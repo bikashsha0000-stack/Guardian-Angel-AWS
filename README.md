@@ -1,74 +1,97 @@
-# Guardian Angel — AWS Cloud Monitoring
+# 🛡️ Guardian Angel — AWS Cloud Monitoring
 
-A safety-focused cloud monitoring prototype combining a simple web interface with Linux service health-check automation.
+> A safety-focused cloud monitoring prototype that combines a lightweight web status page with Linux service health-check automation.
 
-## Overview
+[![Tech](https://img.shields.io/badge/Stack-AWS%20%7C%20Linux%20%7C%20Bash%20%7C%20Nginx-blue)](https://github.com/bikashsha0000-stack/Guardian-Angel-AWS)
 
-Guardian Angel demonstrates how a lightweight monitoring solution can detect an unavailable Nginx service and attempt automatic recovery. The project also includes a simple AWS-hosted status page.
+## 📌 Overview
 
-## Features
+Guardian Angel is a practical cloud/operations project built to demonstrate basic monitoring and automated service recovery. It uses a Bash health-check script to monitor Nginx and attempt recovery when the service becomes inactive, together with a simple web page representing the deployed application status.
 
-- Nginx service health check using Bash
-- Automatic restart attempt when Nginx is inactive
-- Recovery verification after restart
-- Simple AWS deployment status page
-- Beginner-friendly Linux and cloud automation workflow
+## ✨ Key Features
 
-## Tech Stack
+- 🔍 Nginx service health monitoring with Bash
+- 🔄 Automatic restart attempt when Nginx is inactive
+- ✅ Post-restart recovery verification
+- ☁️ AWS deployment/status-page concept
+- 🐧 Linux `systemd` service management
+- 🧩 Simple structure suitable for extending into a production-style monitoring project
 
-- HTML5
-- Bash / Shell Scripting
-- Linux / systemd
-- Nginx
-- AWS
+## 🏗️ Architecture
 
-## Project Structure
+```text
+                ┌──────────────────────┐
+                │      AWS Server      │
+                │                      │
+                │  ┌────────────────┐  │
+                │  │      Nginx     │  │
+                │  │  Web Interface │  │
+                │  └───────┬────────┘  │
+                │          │           │
+                │  ┌───────▼────────┐  │
+                │  │ health_check.sh│  │
+                │  │ Bash Monitor   │  │
+                │  └───────┬────────┘  │
+                │          │           │
+                │     systemctl        │
+                │          │           │
+                │  ┌───────▼────────┐  │
+                │  │ Nginx Recovery │  │
+                │  └────────────────┘  │
+                └──────────────────────┘
+```
+
+## 📂 Project Structure
 
 ```text
 Guardian-Angel-AWS/
-├── index.html
-├── health_check.sh
-└── README.md
+├── index.html          # Web status interface
+├── health_check.sh     # Nginx health-check and recovery script
+└── README.md           # Project documentation
 ```
 
-## How It Works
+## ⚙️ How It Works
 
 1. `health_check.sh` checks whether the Nginx service is active.
-2. If Nginx is running, the script reports a healthy state.
-3. If Nginx is down, the script attempts to restart the service.
-4. The script waits briefly and verifies whether recovery succeeded.
-5. `index.html` provides a simple cloud deployment/status page.
+2. If the service is healthy, the script reports the running state.
+3. If Nginx is inactive, the script attempts to start it through `systemctl`.
+4. The script waits briefly and checks the service again.
+5. The web page provides a simple application/deployment status interface.
 
-## Run Locally
+## 🚀 Run Locally
 
-Make the script executable:
+This project requires a Linux environment with `systemd`, Nginx and appropriate permissions for service management.
 
 ```bash
 chmod +x health_check.sh
-```
-
-Run it:
-
-```bash
 ./health_check.sh
 ```
 
-The script requires a Linux environment with `systemctl`, Nginx, and appropriate permissions for service management.
+To view the web page, open `index.html` in a browser or serve it through Nginx.
 
-## Learning Outcomes
+## 🧠 Skills Demonstrated
 
-This project demonstrates practical experience with Linux service management, Bash automation, Nginx monitoring, cloud deployment concepts, and basic operational recovery.
+- Linux fundamentals and service management
+- Bash scripting
+- Nginx administration
+- Cloud deployment concepts
+- Basic monitoring and recovery automation
+- Operational troubleshooting
 
-## Future Improvements
+## 🔭 Planned Enhancements
 
-- Add scheduled monitoring with cron or systemd timers
-- Add structured logging
-- Add email or webhook alerts
-- Add AWS CloudWatch integration
-- Add CI/CD deployment automation
+- Scheduled checks using cron or systemd timers
+- Structured application/service logs
+- Email or webhook alerts
+- AWS CloudWatch integration
+- CI/CD deployment workflow
+- Infrastructure-as-Code with Terraform
 
-## Author
+## 👨‍💻 Author
 
-**Bikash Sah**
+**Bikash Sah**  
+Computer Science & Engineering Graduate  
+Python Development • Automation • Cloud & DevOps • AI/GenAI
 
-Computer Science & Engineering Graduate | Python | Automation | Cloud & DevOps | AI/GenAI
+- GitHub: https://github.com/bikashsha0000-stack
+- LinkedIn: https://www.linkedin.com/in/bikash-sah-5aga7a
